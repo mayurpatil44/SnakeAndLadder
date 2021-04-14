@@ -1,7 +1,6 @@
-public class SnakeAndLadder {
-    public static void main(String[] args) {
-        System.out.println("Welcome to Snake and Ladder Game");
-        final int INITIAL_POSITION=0;
-        final int NO_OF_PLAYERS=1;
-    }
+public class SnakeAndLadder{
+	public static final int startPosition=0;
+	public static void main(String[] args){
+	System.out.println("Player at Start Position "+startPosition);
+	}
 }
