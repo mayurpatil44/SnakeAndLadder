@@ -5,20 +5,23 @@ public class SnakeAndLadder{
 	public static final int Ladder=2;
 	public static final int Snake=3;
 	public static final int minPosition=0;
+	public static final int maxPosition=100;
 
 	public static void main(String[] args){
 
 		int playerPosition=startPosition;
-		System.out.println("Player at Start Position "+startPosition);
-		while(playerPosition<100){ //player reaches the winning position 100
 
+		System.out.println("Player at Start Position "+startPosition);
+		while(playerPosition<100){
 			int diceRoll=((int)Math.floor(Math.random()*10)%6)+1;
 			System.out.println("Dice Roll : "+diceRoll);
 			int optionCheck=(int)Math.floor(Math.random()*10)%3+1;
 			switch(optionCheck){
 				case Ladder:
 					System.out.println("Ladder");
-					playerPosition+=diceRoll;
+					if(playerPosition+diceRoll>maxPosition)
+					System.out.println("Stays at Player Position : "+playerPosition);
+					playerPosition=(playerPosition+diceRoll)<=maxPosition?(playerPosition+diceRoll):playerPosition;
 					break;
 				case Snake:
 					System.out.println("Snake");
