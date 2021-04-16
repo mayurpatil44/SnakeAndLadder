@@ -6,38 +6,56 @@ public class SnakeAndLadder{
 	public static final int Snake=3;
 	public static final int minPosition=0;
 	public static final int maxPosition=100;
-
+	public static final int player1=0;
+	public static final int player2=1;
 	public static void main(String[] args){
 
-		int playerPosition=startPosition;
-		int numberOfDiceRolls=0;
+		int player1Position=startPosition;
+		int player2Position=startPosition;
+		int counter=0;
 
-		System.out.println("Player at Start Position "+startPosition);
-		while(playerPosition<100){
+		System.out.println("Players at Start Position "+startPosition);
+		while(player1Position<100 && player2Position<100){
+			int playerSelect=counter%2;
 			int diceRoll=((int)Math.floor(Math.random()*10)%6)+1;
-			numberOfDiceRolls++;
 			System.out.println("Dice Roll : "+diceRoll);
 			int optionCheck=(int)Math.floor(Math.random()*10)%3+1;
 			switch(optionCheck){
 				case Ladder:
-					System.out.println("Ladder");
-					if(playerPosition+diceRoll>maxPosition)
-					System.out.println("Stays at Player Position : "+playerPosition);
-					playerPosition=(playerPosition+diceRoll)<=maxPosition?(playerPosition+diceRoll):playerPosition;
+					if(playerSelect==player1){
+						player1Position=(player1Position+diceRoll)<=maxPosition?(player1Position+diceRoll):player1Position;
+						System.out.println("PLAYER 1 Turn");
+					}
+					else{
+						player2Position=(player2Position+diceRoll)<=maxPosition?(player2Position+diceRoll):player2Position;							System.out.println("PLAYER 2 Turn");
+					}
+					System.out.println("LADDER");
+					counter++;
 					break;
 				case Snake:
-					System.out.println("Snake");
-					playerPosition=(playerPosition-diceRoll)>=minPosition?(playerPosition-diceRoll):minPosition;
-					if(playerPosition==0)
-					System.out.println("Restarts from 0 position");
+					if(playerSelect==player1){
+						player1Position=(player1Position-diceRoll)>=minPosition?(player1Position-diceRoll):minPosition;
+						System.out.println("PLAYER 1 Turn");
+					}
+					else{
+						player2Position=(player2Position-diceRoll)>=minPosition?(player2Position-diceRoll):minPosition;
+						System.out.println("PLAYER 2 Turn");
+					}
+					System.out.println("SNAKE");
 					break;
 				case noPlay:
-					System.out.println("No Play");
+					System.out.println("NO PLAY");
 					break;
 				default:
 			}
-			System.out.println("Player Position : "+playerPosition);
+			System.out.println("Player 1 Position : "+player1Position);
+			System.out.println("Player 2 Position : "+player2Position);
+			counter++;
 		}
-		System.out.println("The Dice was rolled "+numberOfDiceRolls+" times to win the game.");
+	if(player1Position==100)
+		System.out.println("PLAYER 1 WINS");
+	else
+		System.out.println("PLAYER 2 WINS");
+
 	}
 }
